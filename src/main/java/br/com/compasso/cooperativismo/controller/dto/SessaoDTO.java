@@ -15,6 +15,7 @@ public class SessaoDTO {
 	
 	private LocalDateTime dataFim;
 	
+	@NotNull
 	private PautaIdDTO pauta;
 
 }

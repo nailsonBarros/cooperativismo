@@ -28,8 +28,38 @@ public class AdviceExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(PautaNotFoundException.class)
 	public final ResponseEntity<CustomizedResponse> handlePautaNotFoundException(PautaNotFoundException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.NOT_FOUND.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(SessaoNotFoundException.class)
+	public final ResponseEntity<CustomizedResponse> handleSessaoNotFoundException(SessaoNotFoundException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.NOT_FOUND.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(AssociadoNotFoundException.class)
+	public final ResponseEntity<CustomizedResponse> handleAssociadoNotFoundException(AssociadoNotFoundException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.NOT_FOUND.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(SessaoNaoIniciadaException.class)
+	public final ResponseEntity<CustomizedResponse> handleSessaoNaoIniciadaException(SessaoNaoIniciadaException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(SessaoFechadaException.class)
+	public final ResponseEntity<CustomizedResponse> handleSessaoFechadaException(SessaoFechadaException ex){
 		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.toString());
 		return new ResponseEntity<>(customizedResponse,HttpStatus.BAD_REQUEST);
 	}
 
+	
+	@ExceptionHandler(AssociadoJaVotoException.class)
+	public final ResponseEntity<CustomizedResponse> handleAssociadoJaVotoException(AssociadoJaVotoException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.BAD_REQUEST);
+	}
 }
