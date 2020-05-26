@@ -32,7 +32,7 @@ public class Sessao {
 	private LocalDateTime dataFim;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", nullable = false)
 	private Pauta pauta;
 
 }

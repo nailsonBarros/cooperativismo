@@ -13,6 +13,7 @@ public class PautaService implements IPautaService{
 	@Autowired
 	private PautaRepository pautaRepository;
 	
+	@Override
 	public Pauta savePauta(Pauta pauta) {
 		return pautaRepository.save(pauta);
 	}
