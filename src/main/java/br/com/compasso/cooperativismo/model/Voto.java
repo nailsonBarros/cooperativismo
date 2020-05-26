@@ -31,8 +31,8 @@ public class Voto {
 	@JoinColumn(referencedColumnName = "id")
 	private Sessao sessao;
 	
-	@Column()
-	private String voto;
+	@Column
+	private String valor;
 	
 	
 
