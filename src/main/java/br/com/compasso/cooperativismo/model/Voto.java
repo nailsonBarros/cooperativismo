@@ -25,10 +25,6 @@ public class Voto {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
-	private Pauta pauta;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "id")
 	private Associado associado;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
