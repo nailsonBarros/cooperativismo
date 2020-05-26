@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compasso.cooperativismo.controller.dto.AssociadoDTO;
-import br.com.compasso.cooperativismo.controller.dto.PautaDTO;
 import br.com.compasso.cooperativismo.model.Associado;
-import br.com.compasso.cooperativismo.model.Pauta;
 import br.com.compasso.cooperativismo.service.impl.AssociadoService;
-import br.com.compasso.cooperativismo.service.impl.PautaService;
 
 @RestController
 @RequestMapping("/associado")

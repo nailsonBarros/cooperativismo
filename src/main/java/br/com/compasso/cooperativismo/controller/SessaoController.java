@@ -23,7 +23,7 @@ public class SessaoController {
 	private SessaoService sessaoService;
 	
 	@PostMapping
-	public ResponseEntity<Sessao> saveSessao(@RequestBody @Valid SessaoDTO sessaoDTO) throws Exception{
+	public ResponseEntity<Sessao> saveSessao(@RequestBody @Valid SessaoDTO sessaoDTO){
 		return new ResponseEntity<>(sessaoService.saveSessao(new ModelMapper().map(sessaoDTO, Sessao.class)),HttpStatus.CREATED);
 	}
 

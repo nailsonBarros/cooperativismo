@@ -9,6 +9,6 @@ public interface ISessaoService {
 	 * @param sessao
 	 * @return Sessao
 	 */
-	Sessao saveSessao(Sessao sessao) throws Exception;
+	Sessao saveSessao(Sessao sessao);
 
 }

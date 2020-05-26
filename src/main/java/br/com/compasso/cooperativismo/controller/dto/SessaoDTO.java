@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
-import br.com.compasso.cooperativismo.model.Pauta;
 import lombok.Data;
 
 @Data

@@ -33,7 +33,7 @@ public class VotoService implements IVotoService {
 	@Autowired
 	private AssociadoRepository associadoRepository;
 
-	public Voto saveVoto(Voto voto) throws Exception {
+	public Voto saveVoto(Voto voto) {
 
 		if (StringUtils.isNotEmpty(voto.getSessao().getId().toString())) {
 

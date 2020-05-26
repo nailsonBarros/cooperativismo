@@ -24,7 +24,7 @@ public class VotoController {
 	
 	
 	@PostMapping
-	public ResponseEntity<Voto> saveVoto(@RequestBody @Valid VotoDTO votoDTO) throws Exception{
+	public ResponseEntity<Voto> saveVoto(@RequestBody @Valid VotoDTO votoDTO){
 		return new ResponseEntity<>(votoService.saveVoto(new ModelMapper().map(votoDTO, Voto.class)),HttpStatus.CREATED);
 	}
 

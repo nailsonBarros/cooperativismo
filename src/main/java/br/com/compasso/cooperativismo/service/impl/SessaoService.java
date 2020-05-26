@@ -26,7 +26,7 @@ public class SessaoService implements ISessaoService{
 	private PautaRepository pautaRepository;
 	
 	@Override
-	public Sessao saveSessao(Sessao sessao) throws Exception {
+	public Sessao saveSessao(Sessao sessao) {
 		
 		LocalDateTime dataAtual = LocalDateTime.now();                                 
 
