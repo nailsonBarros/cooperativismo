@@ -8,6 +8,10 @@ public class Constants {
 	public static final String SESSAO_FECHADA = "Sessão encerrada para votação.";
 	public static final String ASSOCIADO_NOT_FOUND = "Associado não encontrado.";
 	public static final String SESSAO_NOT_FOUND = "Sessão nao encontrada.";
+	public static final String SIM = "SIM";
+	public static final String NAO = "NAO";
+	public static final String RESULTADO_FINAL = "Resultado final.";
+	public static final String RESULTADO_PARCIAL = "Resultado Parcial.";
 
 	private Constants() {
 

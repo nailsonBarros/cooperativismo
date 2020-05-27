@@ -23,7 +23,7 @@ public class AssociadoController {
 	private AssociadoService associadoService;
 	
 	@PostMapping
-	public ResponseEntity<Associado> savePauta(@RequestBody @Valid AssociadoDTO associadoDTO){
+	public ResponseEntity<Associado> saveAssociado(@RequestBody @Valid AssociadoDTO associadoDTO){
 		return new ResponseEntity<>(associadoService.saveAssociado(new ModelMapper().map(associadoDTO, Associado.class)),HttpStatus.CREATED);
 	}
 

@@ -16,7 +16,7 @@ public class VotoDTO {
 	private SessaoIdDTO sessao;
 	
 	@NotNull
-	@EnumValidation(enumClass = ValorType.class, message="Expected values: Sim, Não.")
+	@EnumValidation(enumClass = ValorType.class, message="Expected values: SIM, NAO.")
 	private String valor;
 
 }

@@ -10,6 +10,8 @@ import br.com.compasso.cooperativismo.model.Voto;
 @Repository
 public interface VotoRepository extends JpaRepository<Voto, Long>{
 	
-	Optional<Voto> findBySessaoIdAndAssociadoId (Long sessaoId,Long associadoId); 
+	Optional<Voto> findBySessaoIdAndAssociadoId (Long sessaoId,Long associadoId);
+	
+	Long countBySessaoIdAndValor (Long sessaoId, String valor);
 
 }
