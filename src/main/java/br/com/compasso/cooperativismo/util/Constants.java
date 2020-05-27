@@ -12,6 +12,9 @@ public class Constants {
 	public static final String NAO = "NAO";
 	public static final String RESULTADO_FINAL = "Resultado final.";
 	public static final String RESULTADO_PARCIAL = "Resultado Parcial.";
+	public static final String CPF_UNABLE_TO_VOTE = "Cpf invalido para votação.";
+	public static final Object UNABLE_TO_VOTE = "UNABLE_TO_VOTE";
+	public static final String CPF_INVALIDO = "Cpf inserido não é valido.";
 
 	private Constants() {
 

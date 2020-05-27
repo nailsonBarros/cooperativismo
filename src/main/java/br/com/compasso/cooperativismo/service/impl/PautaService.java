@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.compasso.cooperativismo.controller.dto.ResultadoVotacaoDTO;
-import br.com.compasso.cooperativismo.exception.PautaNotFoundException;
 import br.com.compasso.cooperativismo.exception.SessaoNotFoundException;
 import br.com.compasso.cooperativismo.model.Pauta;
 import br.com.compasso.cooperativismo.model.Sessao;

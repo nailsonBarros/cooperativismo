@@ -12,6 +12,8 @@ import br.com.compasso.cooperativismo.exception.AssociadoNotFoundException;
 import br.com.compasso.cooperativismo.exception.SessaoFechadaException;
 import br.com.compasso.cooperativismo.exception.SessaoNaoIniciadaException;
 import br.com.compasso.cooperativismo.exception.SessaoNotFoundException;
+import br.com.compasso.cooperativismo.exception.UnableToVoteException;
+import br.com.compasso.cooperativismo.feign.ValidaCpfFeignClient;
 import br.com.compasso.cooperativismo.model.Associado;
 import br.com.compasso.cooperativismo.model.Sessao;
 import br.com.compasso.cooperativismo.model.Voto;
@@ -29,11 +31,29 @@ public class VotoService implements IVotoService {
 
 	@Autowired
 	private SessaoRepository sessaoRepository;
-	
+
 	@Autowired
 	private AssociadoRepository associadoRepository;
 
+	@Autowired
+	private ValidaCpfFeignClient validaCpfFeignClient;
+
+	@Override
 	public Voto saveVoto(Voto voto) {
+
+		if (StringUtils.isNotEmpty(voto.getAssociado().getCpf())) {
+
+			Optional<Associado> optionalAssociado = associadoRepository.findByCpf(voto.getAssociado().getCpf());
+
+			if (optionalAssociado.isPresent()) {
+				voto.setAssociado(optionalAssociado.get());
+			} else {
+				throw new AssociadoNotFoundException(Constants.ASSOCIADO_NOT_FOUND);
+			}
+
+		}
+
+		validaCpfAptoParaVotar(voto.getAssociado().getCpf());
 
 		if (StringUtils.isNotEmpty(voto.getSessao().getId().toString())) {
 
@@ -41,39 +61,35 @@ public class VotoService implements IVotoService {
 
 			if (optionalSessao.isPresent()) {
 				voto.setSessao(optionalSessao.get());
-			}else {
+			} else {
 				throw new SessaoNotFoundException(Constants.SESSAO_NOT_FOUND);
 			}
 
 		}
-		
-		if(StringUtils.isNotEmpty(voto.getAssociado().getCpf())) {
-			
-			Optional<Associado> optionalAssociado = associadoRepository.findByCpf(voto.getAssociado().getCpf());
-			
-			if (optionalAssociado.isPresent()) {
-				voto.setAssociado(optionalAssociado.get());
-			}else {
-				throw new AssociadoNotFoundException(Constants.ASSOCIADO_NOT_FOUND);
-			}
-			
+
+		if (LocalDateTime.now().isAfter(voto.getSessao().getDataFim())) {
+			throw new SessaoFechadaException(Constants.SESSAO_FECHADA);
 		}
-		
-		if(LocalDateTime.now().isAfter(voto.getSessao().getDataFim())) {
-			throw new SessaoFechadaException(Constants.SESSAO_FECHADA);		
-		}
-		
-		if(LocalDateTime.now().isBefore(voto.getSessao().getDataInicio())) {
+
+		if (LocalDateTime.now().isBefore(voto.getSessao().getDataInicio())) {
 			throw new SessaoNaoIniciadaException(Constants.SESSAO_NAO_INICIADA);
 		}
-		
-		Optional<Voto> optionalVoto = votoRepository.findBySessaoIdAndAssociadoId(voto.getSessao().getId(), voto.getAssociado().getId());
 
-		if(optionalVoto.isPresent()) {
- 			throw new AssociadoJaVotoException(Constants.ASSOCIADO_JA_VOTO);
+		Optional<Voto> optionalVoto = votoRepository.findBySessaoIdAndAssociadoId(voto.getSessao().getId(),
+				voto.getAssociado().getId());
+
+		if (optionalVoto.isPresent()) {
+			throw new AssociadoJaVotoException(Constants.ASSOCIADO_JA_VOTO);
 		}
-		
+
 		return votoRepository.save(voto);
+	}
+
+	@Override
+	public void validaCpfAptoParaVotar(String cpf) {
+		if (validaCpfFeignClient.validaCpfDTO(cpf).getStatus().equals(Constants.UNABLE_TO_VOTE)) {
+			throw new UnableToVoteException(Constants.CPF_UNABLE_TO_VOTE);
+		}
 	}
 
 }

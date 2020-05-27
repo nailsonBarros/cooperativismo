@@ -62,4 +62,16 @@ public class AdviceExceptionHandler extends ResponseEntityExceptionHandler {
 		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.toString());
 		return new ResponseEntity<>(customizedResponse,HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(UnableToVoteException.class)
+	public final ResponseEntity<CustomizedResponse> handleUnableToVoteException(UnableToVoteException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.OK.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.OK);
+	}
+	
+	@ExceptionHandler(CpfInvalidoException.class)
+	public final ResponseEntity<CustomizedResponse> handleCpfInvalidoException(CpfInvalidoException ex){
+		CustomizedResponse customizedResponse = new CustomizedResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponse,HttpStatus.BAD_REQUEST);
+	}
 }
