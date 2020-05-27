@@ -25,9 +25,9 @@ import br.com.compasso.cooperativismo.util.TestUtil;
 @AutoConfigureMockMvc
 public class AssociadoControllerTest {
 	
-	private static final String URL_JSON_ASSOCIADO = "/json/InsertAssociadoCpfValido.json";
+	private static final String URL_JSON_ASSOCIADO = "/json/associado/InsertAssociadoCpfValido.json";
 	private static final String URL_ASSOCIADO = "/associado";
-	private static final String URL_JSON_ASSOCIADO_INVALIDO = "/json/InsertAssociadoCpfInvalido.json";
+	private static final String URL_JSON_ASSOCIADO_INVALIDO = "/json/associado/InsertAssociadoCpfInvalido.json";
 	
 	@Autowired
 	private MockMvc mockMvc;
